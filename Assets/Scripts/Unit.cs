@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Unit : MonoBehaviour
 {
-    public string Name = "Unite-Level1";
+    public string Name = "Unit-Level1";
     public float Healt = 1;
     public float MoveSpeed = 100f;
     private Rigidbody2D Rb;
