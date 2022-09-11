@@ -244,7 +244,7 @@ MonoBehaviour:
   Bullet: {fileID: 8891932821790333493, guid: f9722c0d08d7e2949982f0f2d1a05899, type: 3}
   Lives: 5
   CurrentLives: 5
-  ViewDistance: 1.35
+  ViewDistance: 2.2
   FireRate: 1.1
   Force: 500
   Speed: 1.5

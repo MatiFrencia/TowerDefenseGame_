@@ -98,7 +98,10 @@ public class Spawner : MonoBehaviour
 
     void SpawnEnemy()
     {
-        int randomEnemy = Random.Range(0, Enemies.Length);
+        int randomEnemy = 
+            wavephase == Wavephase.PHASE_1 ? 0:
+            wavephase == Wavephase.PHASE_2 ? Random.Range(0, Enemies.Length-1):
+            Random.Range(0, Enemies.Length);
         int randomPoints = Random.Range(0, SpawnPoints.Length);
         Enemies[randomEnemy].GetComponent<Unit>().Target = target;
         var enemy = Instantiate(Enemies[randomEnemy], SpawnPoints[randomPoints].position, transform.rotation);

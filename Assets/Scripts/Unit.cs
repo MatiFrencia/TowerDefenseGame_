@@ -42,8 +42,8 @@ public class Unit : MonoBehaviour
     void MoveCharacter(Vector2 direction)
     {
         Rb.MovePosition((Vector2)transform.position + (MoveSpeed * Time.deltaTime * direction));
-        
-        if (Vector3.Distance(transform.position, Target.position) <= 0.22f)
+        var distance = Vector3.Distance(transform.position, Target.position);
+        if (distance <= .7f)
         {
             Target.GetComponent<Turret>().CurrentLives--;
             Destroy(gameObject);

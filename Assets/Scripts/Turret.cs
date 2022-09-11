@@ -65,7 +65,7 @@ public class Turret : MonoBehaviour
             RaycastHit2D rayInfo = Physics2D.Raycast(transform.position, Direction, ViewDistance);
             if (rayInfo)
             {
-                if (rayInfo.collider.gameObject.tag == "Unit")
+                if (rayInfo.collider.gameObject.CompareTag("Unit"))
                 {
                     if (Detected == false)
                     {
@@ -89,12 +89,15 @@ public class Turret : MonoBehaviour
                 }
             }
         }
+        UpdateTarget();
     }
-    void Shoot() 
+    void Shoot()
     {
         //LevelManager.Instance.CalculateCriticalFactor();
         GameObject BulletIns = Instantiate(Bullet, ShootPoint.position, Quaternion.identity);
         BulletIns.GetComponent<Rigidbody2D>().AddForce(Direction * Force * Speed);
+        var audioSource = GetComponent<AudioSource>();
+        AudioManager.instance.SetAudioClipForEffects(audioSource, AudioClipsEffects.BULLET);
         //LevelManager.Instance.Damage = LevelManager.Instance.oldDamage;
     }
 
@@ -111,7 +114,7 @@ public class Turret : MonoBehaviour
         Gizmos.color = Color.cyan;
         Gizmos.DrawLine(transform.position, closeEnemyRef);
     }
-    
+
     private void UpdateTarget()
     {
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Unit");
@@ -122,7 +125,7 @@ public class Turret : MonoBehaviour
         {
             float distance = Vector3.Distance(transform.position, enemy.transform.position);
 
-            if (isChildTurret && distance <= .35f)
+            if (isChildTurret && distance <= .7f)
             {
                 Destroy(gameObject);
             }
